@@ -1,6 +1,6 @@
-defmodule PhoenixU2f do
+defmodule PhoenixU2F do
   @moduledoc """
-  Documentation for PhoenixU2f.
+  Documentation for PhoenixU2F.
   """
 
   @doc """
@@ -8,7 +8,7 @@ defmodule PhoenixU2f do
 
   ## Examples
 
-      iex> PhoenixU2f.hello()
+      iex> PhoenixU2F.hello()
       :world
 
   """

@@ -1,4 +1,4 @@
-# PhoenixU2f
+# PhoenixU2F
 
 **TODO: Add description**
 

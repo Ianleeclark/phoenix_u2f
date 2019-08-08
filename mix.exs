@@ -1,4 +1,4 @@
-defmodule PhoenixU2f.MixProject do
+defmodule PhoenixU2F.MixProject do
   use Mix.Project
 
   def project do
@@ -22,7 +22,11 @@ defmodule PhoenixU2f.MixProject do
   defp deps do
     [
       {:credo, "~> 1.0", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.0.0-rc.6", only: [:dev, :test], runtime: false}
+      {:dialyxir, "~> 1.0.0-rc.6", only: [:dev, :test], runtime: false},
+      # Non-testing dependencies
+      {:ecto, "~> 3.1.7"},
+      {:phoenix, "~> 1.4.9"},
+      {:u2f_ex, "~> 0.4.1"}
     ]
   end
 
