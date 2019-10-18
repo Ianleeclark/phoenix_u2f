@@ -1,6 +1,7 @@
-defmodule PhoenixU2F.U2FController do
+defmodule PhoenixU2FWeb.Controller do
   use PhoenixU2FWeb, :controller
 
+  alias PhoenixU2F.U2F
   alias PhoenixU2F.U2FKey
 
   alias U2FEx.KeyMetadata
@@ -66,7 +67,11 @@ defmodule PhoenixU2F.U2FController do
   user is who they claim to be.
   """
   def finish_authentication(conn, device_response) do
-    with :ok <- U2FEx.finish_authentication(get_user_id(conn), device_response |> Jason.encode!()) do
+    with :ok <-
+           U2FEx.finish_authentication(
+             get_user_id(conn),
+             device_response |> Phoenix.json_library().encode!()
+           ) do
       conn
       |> json(%{"success" => true})
     else
