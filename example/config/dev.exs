@@ -66,7 +66,3 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
-
-config :phoenix_u2f,
-  app_id: "https://yoursite.com",
-  repo: Example.Repo

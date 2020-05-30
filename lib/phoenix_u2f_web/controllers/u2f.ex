@@ -1,7 +1,6 @@
 defmodule PhoenixU2FWeb.Controller do
   use PhoenixU2FWeb, :controller
 
-  alias PhoenixU2F.U2F
   alias PhoenixU2F.U2FKey
 
   alias U2FEx.KeyMetadata
