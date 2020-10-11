@@ -21,11 +21,11 @@ defmodule Mix.Tasks.U2fMigrate do
                   add(:user_id, :string, nullable: false)
                   timestamps()
               end
-              create index(:u2f_keys, [:public_key])
-              create unique_index(:u2f_keys, [:user_id])
+              create index(:u2f_keys, [:user_id])
+              create unique_index(:u2f_keys, [:key_handle])
       """
 
-      assigns = [mod: Module.concat([repo, Migrations, Macro.camelize(name)]), change: change]
+      assigns = [mod: Module.concat([repo, Migrations, camelize(name)]), change: change]
 
       create_file(file, migration_template(assigns))
     end)

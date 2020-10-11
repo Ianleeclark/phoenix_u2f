@@ -3,8 +3,6 @@ defmodule ExampleWeb.Router do
 
   use PhoenixU2FWeb.Router
 
-  phoenix_u2f_routes()
-
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
