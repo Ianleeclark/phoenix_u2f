@@ -12,16 +12,17 @@ defmodule Mix.Tasks.U2fMigrate do
 
     do_gen_migration(config, "u2f_keys", fn repo, _path, file, name ->
       change = """
-      create table(:u2f_keys) do
-      add(:public_key, :string, size: 128, nullable: false)
-      add(:key_handle, :string, size: 128, nullable: false)
-      add(:version, :string, size: 10, default: "U2F_V2")
-      add(:app_id, :string, nullable: false)
-      # NOTE: You'll need to update what table this references or change it to a normal field
-      add(:user_id, :string, nullable: false)
-
-      timestamps()
-      end
+              create table(:u2f_keys) do
+                  add(:public_key, :string, size: 128, nullable: false)
+                  add(:key_handle, :string, size: 128, nullable: false)
+                  add(:version, :string, size: 10, default: "U2F_V2")
+                  add(:app_id, :string, nullable: false)
+                  # NOTE: You'll need to update what table this references or change it to a normal field
+                  add(:user_id, :string, nullable: false)
+                  timestamps()
+              end
+              create index(:u2f_keys, [:public_key])
+              create unique_index(:u2f_keys, [:user_id])
       """
 
       assigns = [mod: Module.concat([repo, Migrations, Macro.camelize(name)]), change: change]
@@ -60,10 +61,10 @@ defmodule Mix.Tasks.U2fMigrate do
 
   embed_template(:migration, """
   defmodule <%= inspect @mod %> do
-  use Ecto.Migration
-  def change do
+      use Ecto.Migration
+      def change do
   <%= @change %>
-  end
+      end
   end
   """)
 end
